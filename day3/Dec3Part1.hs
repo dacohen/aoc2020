@@ -5,7 +5,7 @@ getGrid path = do
     contents <- readFile path
     return Grid { width = length $ head (lines contents)
                 , height = length $ lines contents
-                , value = [ map (\char -> if char == '#' then True else False) xs | xs <- lines contents ]
+                , value = [ map (\char -> char == '#') xs | xs <- lines contents ]
                 }
 
 -- Tuple is (rows, cols)
