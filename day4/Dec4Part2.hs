@@ -74,9 +74,9 @@ isValid passport =
 
 validateField :: (String, String) -> Bool
 validateField tuple
-    | key == "byr" = (read value) >= 1920 && (read value) <= 2002
-    | key == "iyr" = (read value) >= 2010 && (read value) <= 2020
-    | key == "eyr" = (read value) >= 2020 && (read value) <= 2030
+    | key == "byr" = numValue >= 1920 && numValue <= 2002
+    | key == "iyr" = numValue >= 2010 && numValue <= 2020
+    | key == "eyr" = numValue >= 2020 && numValue <= 2030
     | key == "hgt" =
         case (parse heightExpr "" value) of
             Left _ -> False
@@ -96,6 +96,7 @@ validateField tuple
     where
         key = fst tuple
         value = snd tuple
+        numValue = read value
 
 
 countValids :: [Passport] -> Int
